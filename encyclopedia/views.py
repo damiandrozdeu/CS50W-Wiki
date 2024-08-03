@@ -26,7 +26,6 @@ def title(request, name):
 
 def newpage(request):
     if request.method == "POST":
-        form = NewTaskForm(request.POST)
         title = request.POST.get('title')
         content = request.POST.get('content')
         util.save_entry(title=title, content=content) 

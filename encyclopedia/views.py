@@ -16,3 +16,11 @@ def title(request, name):
     })
 
 
+def search(request):
+    if request.method == "POST":
+        title = request.POST.get("q")
+        formated_text = markdown(util.get_entry(title))
+        return render(request, "encyclopedia/entry.html", {
+        "entries": formated_text
+        }
+        )

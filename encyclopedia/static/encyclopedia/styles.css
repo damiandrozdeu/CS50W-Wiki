@@ -36,3 +36,28 @@ textarea {
 .sidebar h2 {
     margin-top: 5px;
 }
+
+.my-content-class
+{
+width: 100%;
+height: 60vh;
+display: block;
+
+}
+.my-title-class
+{
+width: 100%;
+display: block;
+
+}
+
+.submit-button 
+{
+margin-top:10px;
+float: right
+}
+
+.form-new-page
+{
+    width: 90%;
+}

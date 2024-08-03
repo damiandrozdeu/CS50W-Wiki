@@ -23,7 +23,6 @@ def title(request, name):
         "entries": formated_text
     })
 
-
 def newpage(request):
     if request.method == "POST":
         title = request.POST.get('title')
@@ -33,4 +32,23 @@ def newpage(request):
     return render(request, "encyclopedia/new_page.html", {
         "form": NewTaskForm()
     })
+
+def search(request):
+    if request.method == "POST":
+        allentries = util.list_entries()
+        searched = []
+        title = request.POST.get("q")
+        if title in allentries:
+            formated_text = markdown(util.get_entry(title))
+            return render(request, "encyclopedia/entry.html", {
+            "entries": formated_text }
+            )
+        else:
+            for entry in allentries:
+                if title in entry:
+                    searched.append(entry)
+            return render(request,"encyclopedia/search.html", {
+            "entries": searched }
+            )
+
 

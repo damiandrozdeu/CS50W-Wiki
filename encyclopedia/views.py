@@ -18,9 +18,20 @@ def title(request, name):
 
 def search(request):
     if request.method == "POST":
+        allentries = util.list_entries()
+        searched = []
         title = request.POST.get("q")
-        formated_text = markdown(util.get_entry(title))
-        return render(request, "encyclopedia/entry.html", {
-        "entries": formated_text
-        }
-        )
+        if title in allentries:
+            formated_text = markdown(util.get_entry(title))
+            return render(request, "encyclopedia/entry.html", {
+            "entries": formated_text }
+            )
+        else:
+            for entry in allentries:
+                if title in entry:
+                    searched.append(entry)
+            return render(request,"encyclopedia/search.html", {
+            "entries": searched }
+            )
+
+

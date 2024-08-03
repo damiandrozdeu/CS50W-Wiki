@@ -3,6 +3,7 @@ from markdown2 import markdown
 from django import forms
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+import random
 
 class NewTaskForm(forms.Form):
     title = forms.CharField(label="Title", widget=forms.TextInput(attrs={'class': 'my-title-class'}))
@@ -45,10 +46,16 @@ def search(request):
             )
         else:
             for entry in allentries:
-                if title in entry:
+                if title.lower() in entry.lower():
                     searched.append(entry)
             return render(request,"encyclopedia/search.html", {
             "entries": searched }
             )
 
+def random_page(request):
+    choice = random.choice(util.list_entries())
+    formated_text = markdown(util.get_entry(choice))
+    return render(request, "encyclopedia/entry.html", {
+        "entries": formated_text
+    })
 

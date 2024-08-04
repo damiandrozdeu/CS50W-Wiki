@@ -6,10 +6,11 @@
 
 {% block body %}
     <h1>Edit Page</h1>
-
-    <ul>
-        TEST
-    </ul>
+    <form class="form-new-page" action="{% url 'edit' name=title %}" method="post">
+        {% csrf_token %}
+        {{form}}
+        <input type="submit">
+    </form>
 
 {% endblock %}
 

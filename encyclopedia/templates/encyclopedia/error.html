@@ -1,0 +1,16 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia
+{% endblock %}
+
+{% block body %}
+    <h1>
+        {{ title }} page already exists! 
+    </h1>
+    <p>
+        You cannot create a new page that already exists.
+    </p>
+    <a href="{% url 'title' name=title %}">Click here to go to existing page!</a>
+
+{% endblock %}
